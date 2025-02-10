@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "yeasy-simple-web.fullname" . }}
+  labels:
+    {{- include "yeasy-simple-web.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "yeasy-simple-web.selectorLabels" . | nindent 4 }}
