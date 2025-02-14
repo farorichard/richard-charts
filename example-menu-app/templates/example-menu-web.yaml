@@ -22,9 +22,9 @@ spec:
           name: example-menu-web
         env:
         - name: API_HOST_URL
-          value: {{ .Values.app.env.api_host_url }}
+          value: {{ .Values.menuWebService.env.api_host_url }}
         - name: API_HOST_PORT
-          value: {{ .Values.app.env.api_host_port }}
+          value: {{ .Values.menuWebService.env.api_host_port }}
         resources:
           requests:
             cpu: 1m
