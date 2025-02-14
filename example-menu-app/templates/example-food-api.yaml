@@ -19,7 +19,7 @@ spec:
         image: {{ .Values.foodApiService.image.repository }}:{{ .Values.foodApiService.image.tag }}
         ports:
         - containerPort: 3000
-          name: example-food-api
+          name: food-api
         env:
         - name: ITEM_BREAKFAST
           value: {{ .Values.foodApiService.env.item_breakfast }}

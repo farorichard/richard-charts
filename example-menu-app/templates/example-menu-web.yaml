@@ -19,7 +19,7 @@ spec:
         image: {{ .Values.menuWebService.image.repository }}:{{ .Values.menuWebService.image.tag }}
         ports:
         - containerPort: 3001
-          name: example-menu-web
+          name: menu-web
         env:
         - name: API_HOST_URL
           value: {{ .Values.menuWebService.env.api_host_url }}
