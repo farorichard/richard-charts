@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-food-api
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: example-food-api
+  template:
+    metadata:
+      labels:
+        app: example-food-api
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: example-food-api
+        image: {{ .Values.foodApiService.image.repository }}:{{ .Values.foodApiService.image.tag }}
+        ports:
+        - containerPort: 3000
+          name: example-food-api
+        env:
+        - name: ITEM_BREAKFAST
+          value: {{ .Values.foodApiService.env.item_breakfast }}
+        - name: ITEM_LUNCH
+          value: {{ .Values.foodApiService.env.item_lunch }}
+        - name: ITEM_DINNER
+          value: {{ .Values.foodApiService.env.item_dinner }}
+        resources:
+          requests:
+            cpu: 1m
+            memory: 64Mi
+          limits:
+            cpu: 10m
+            memory: 128Mi 
+        startupProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          failureThreshold: 3
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          failureThreshold: 3
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          failureThreshold: 5
+          initialDelaySeconds: 3
+          periodSeconds: 3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:  example-food-api
+spec:
+  type: {{ .Values.foodApiService.serviceType }}
+  ports:
+  - port: 80
+    targetPort: 3000
+  selector:
+    app: example-food-api
