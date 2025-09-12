@@ -17,7 +17,18 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
+  
 imagePullSecrets: []
+
+extraEnv:
+  - name: N8N_HOST
+    value: "4.149.211.246"
+  - name: N8N_PATH
+    value: "/n8n/"
+  - name: WEBHOOK_URL
+    value: "https://4.149.211.246/n8n/"
+  - name: N8N_PROXY_HOPS
+    value: "1"
 
 # The Name to use for the chart. Will be the prefix of all resources aka. The Chart.Name (default is 'n8n')
 nameOverride:
@@ -33,16 +44,14 @@ hostAliases: []
 # Ingress
 #
 ingress:
-  enabled: true
+  enabled: false
   className: nginx
   annotations: {}
     
   className: ""
   hosts:
     - host: 4.149.211.246
-      paths: 
-	- path: /n8n(/|$)(.*)
-	  pathType: Prefix
+      paths: []
 
   tls: []
     # - hosts:
