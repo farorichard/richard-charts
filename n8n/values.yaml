@@ -28,7 +28,7 @@ env:
   - name: N8N_PATH
     value: "/n8n/"
   - name: WEBHOOK_URL
-    value: "https://4.149.211.246/n8n/"
+    value: "http://4.149.211.246/n8n/"
   - name: N8N_PROXY_HOPS
     value: "1"
   - name: N8N_EDITOR_BASE_URL
