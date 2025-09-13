@@ -21,18 +21,12 @@ image:
 imagePullSecrets: []
 
 env:
-  - name: N8N_HOST
-    value: 4.149.211.246
-  - name: N8N_PROTOCOL
-    value: "http"
-  - name: N8N_PATH
-    value: "/n8n/"
-  - name: WEBHOOK_URL
-    value: "https://4.149.211.246/n8n/"
-  - name: N8N_PROXY_HOPS
-    value: "1"
-  - name: N8N_EDITOR_BASE_URL
-    value: "http://20.30.40.50/n8n/"    
+  N8N_HOST: "4.149.211.246"
+  N8N_PROTOCOL: "http"
+  N8N_PATH: "/n8n/"
+  WEBHOOK_URL: "http://4.149.211.246/n8n/"
+  N8N_PROXY_HOPS: "1"
+  N8N_EDITOR_BASE_URL: "http://4.149.211.246/n8n/"
 
 # The Name to use for the chart. Will be the prefix of all resources aka. The Chart.Name (default is 'n8n')
 nameOverride:
